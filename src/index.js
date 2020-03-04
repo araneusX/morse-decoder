@@ -37,8 +37,17 @@ const MORSE_TABLE = {
     '-----':  '0',
 };
 
+const NUM_MORSE_TABLE = {
+  '**********': ' '
+};
+
+for (i in MORSE_TABLE) {
+  name = i.replace(/-/g, '11').replace(/\./g, '10').padStart(10, '00');
+  NUM_MORSE_TABLE[name] = MORSE_TABLE[i];
+}
+
 function decode(expr) {
-    // write your solution here
+  return expr.match(/.{10}/g).map(item => NUM_MORSE_TABLE[item]).join('');
 }
 
 module.exports = {
